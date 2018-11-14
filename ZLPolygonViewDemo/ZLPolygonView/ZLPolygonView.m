@@ -94,6 +94,20 @@
     [self setNeedsDisplay];
 }
 
+- (void)setJsonValue:(NSString*)jsonStr {
+    NSArray* array = [self arrayWithJsonString:jsonStr];
+    if (array.count >= 3) {
+        NSMutableArray* texts = [NSMutableArray new];
+        NSMutableArray* values = [NSMutableArray new];
+        for (NSDictionary* dic in array) {
+            [texts addObject:dic[@"text"]];
+            [values addObject:dic[@"value"]];
+        }
+        self.arrayLabels = texts;
+        self.arrayPolygons = values;
+    }
+}
+
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
@@ -193,6 +207,20 @@
             break;
         }
     }
+}
+
+- (NSArray *)arrayWithJsonString:(NSString *)jsonString {
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSArray *array = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    if (error) {
+        NSLog(@"json解析失败：%@",error.localizedDescription);
+        return nil;
+    }
+    return array;
 }
 
 @end

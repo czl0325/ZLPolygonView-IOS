@@ -32,6 +32,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithLabels:(NSArray<NSString*>*)labels;
 - (instancetype)initWithLabels:(NSArray<NSString*>*)labels polygons:(NSArray<NSNumber*>*)polygons;
 
+/**
+ json格式：
+  [
+    {
+       text:0,
+       value:0.3
+    },
+    {
+       text:1,
+       value:0.5
+    }
+  ]
+ **/
+- (void)setJsonValue:(NSString*)jsonStr;
+
 @end
 
 NS_ASSUME_NONNULL_END
