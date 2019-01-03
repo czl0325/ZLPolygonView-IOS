@@ -61,7 +61,7 @@
     self.lineColor = [UIColor grayColor];
     self.lineWidth = 1.f;
     self.innerColor = [UIColor orangeColor];
-    self.labelSize = 25.f;
+    self.labelSize = 20.f;
 }
 
 - (void)setLineColor:(UIColor *)lineColor {
@@ -146,10 +146,10 @@
     CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
     CGContextSetLineWidth(context, self.lineWidth);
     
-    for (int j=0; j<4; j++) {
+    for (int j=0; j<self.dividerNumber; j++) {
         for (int i=0; i<self.arrayPolygons.count; i++) {
             CGPoint outPoint = CGPointMake(centerPoint.x - (kCosValue(90 - innerAngle * i) * (radius*(j+1)*(1.0/self.dividerNumber))),centerPoint.y - (kSinValue(90 - innerAngle * i) * (radius*(j+1)*(1.0/self.dividerNumber))));
-            if ((j+1)*0.25 == 1) {
+            if ((j+1)*(1.0/self.dividerNumber) >= 1) {
                 [self.arrayOuterPoints addObject:[NSValue valueWithCGPoint:outPoint]];
                 CGFloat x = centerPoint.x - (kCosValue(90 - innerAngle * i) * (radius+self.labelSize/2));
                 CGFloat y = centerPoint.y - (kSinValue(90 - innerAngle * i) * (radius+self.labelSize/2));

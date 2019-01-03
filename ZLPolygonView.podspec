@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "ZLPolygonView"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "ZLPolygonView"
 
   s.description  = <<-DESC
